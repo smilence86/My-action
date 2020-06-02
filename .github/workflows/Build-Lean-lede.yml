@@ -1,16 +1,20 @@
 name: Build-Lean-lede
 on:
-  push:
-    branches:
-      - master
-    paths:
-      - '.github/workflows/Build-Lean-lede.yml'
-  schedule:
-        - cron: 0 */4 * * *
+#   push:
+#     branches:
+#       - master
+#     paths:
+#       - '.github/workflows/Build-Lean-lede.yml'
+#   schedule:
+#         - cron: 0 */4 * * *
+  watch:
+    types: started
 
 jobs:
   x86:
     runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    
     steps:    
     - name: Prepare environment.
       env:
