@@ -2,18 +2,21 @@ name: Build-and-Upload-Openwrt-x86_64
 
 on: 
 
-  push:
-    branches: 
-      - master
-    paths:
-      - 'openwrt/x86_64/.config'
-      - '.github/workflows/B&U-Openwrt-original-x86_64.yml'
+#   push:
+#     branches: 
+#       - master
+#     paths:
+#       - 'openwrt/x86_64/.config'
+#       - '.github/workflows/B&U-Openwrt-original-x86_64.yml'
  # schedule:
       #  - cron: 0 */4 * * *
+  watch:
+    types: started
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
 
